@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyhton-server
+  labels:
+    app: example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pyhton-server
+  template:
+    metadata:
+      labels:
+        app: pyhton-server
+    spec:
+      containers:
+      - name: pyhton-server
+        image: ghcr.io/orkungedik/python-server
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+      - name: dockerconfigjson-github-com
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyhton-server
+spec:
+  selector:
+    app: pyhton-server
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer
