@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pyhton-server
+  namespace: pyhton-server
   labels:
-    app: example
+    app: pyhton-server
 spec:
   replicas: 1
   selector:
