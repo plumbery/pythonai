@@ -5,6 +5,9 @@ metadata:
   namespace: pyhton-server
   labels:
     app: pyhton-server
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/orkungedik/python-server
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   replicas: 1
   selector:
